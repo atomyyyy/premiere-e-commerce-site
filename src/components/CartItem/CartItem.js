@@ -11,16 +11,29 @@ import { navigate } from 'gatsby';
 
 const CartItem = (props) => {
   const [showQuickView, setShowQuickView] = useState(false);
-  const { image, alt, color, name, size, price } = props;
+  const { 
+    productCode,
+    name,
+    price,
+    color,
+    size,
+    description,
+    image,
+    category,
+    quantity
+  } = props;
+
+  console.log(color);
+  // productCode, image, alt, color, name, size, price 
 
   return (
     <div className={styles.root}>
       <div
         className={styles.imageContainer}
         role={'presentation'}
-        onClick={() => navigate('/product/sample')}
+        onClick={() => navigate(`/product/${productCode}`)}
       >
-        <img src={image} alt={alt}></img>
+        <img src={image} alt={name}></img>
       </div>
       <div className={styles.itemContainer}>
         <span className={styles.name}>{name}</span>

@@ -20,7 +20,6 @@ export const ShoppingCartContextProvider = ({ children }) => {
 
 export const useShoppingCartContext = () => {
   const context = useContext(ShoppingCartContext)
-  console.log(context)
   if (context === undefined || context === null) {
     throw new Error(`useShoppingCartContext must be called within ShoppingCartContextProvider`)
   }

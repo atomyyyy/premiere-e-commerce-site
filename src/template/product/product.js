@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import * as styles from './sample.module.css';
+import React, { useState } from 'react';
+import * as styles from './product.module.css';
 
 import Accordion from '../../components/Accordion';
 import AdjustItem from '../../components/AdjustItem';
@@ -9,28 +9,30 @@ import Container from '../../components/Container';
 import CurrencyFormatter from '../../components/CurrencyFormatter';
 import Gallery from '../../components/Gallery';
 import SizeList from '../../components/SizeList';
-import SwatchList from '../../components/SwatchList';
+import ColorList from '../../components/SWatchList';
 import Layout from '../../components/Layout/Layout';
 
-import { generateMockProductData } from '../../helpers/mock';
-import Icon from '../../components/Icons/Icon';
-
-import AddItemNotificationContext from '../../context/AddItemNotificationProvider';
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
+import { navigate } from 'gatsby';
 
-const ProductPage = (props) => {
-  const ctxAddItemNotification = useContext(AddItemNotificationContext);
-  const showNotification = ctxAddItemNotification.showNotification;
-  const sampleProduct = generateMockProductData(1, 'sample')[0];
-  const [qty, setQty] = useState(0);
-  const [isWishlist, setIsWishlist] = useState(false);
-  const [activeSwatch, setActiveSwatch] = useState(
-    sampleProduct.colorOptions[0]
-  );
-  const [activeSize, setActiveSize] = useState(sampleProduct.sizeOptions[0]);
-
+const ProductPage = ({ pageContext }) => {
   const { data = {}, updateState } = useShoppingCartContext();
-  const { cart = [] } = data
+
+  const {
+    productCode,
+    name,
+    price,
+    colorOptions,
+    sizeOptions,
+    gallery,
+    description,
+    image,
+    category
+  } = pageContext;
+
+  const [quantity, setquantity] = useState(0);
+  const [activeColor, setActiveColor] = useState(colorOptions?.length ? colorOptions[0] : null);
+  const [activeSize, setActiveSize] = useState(sizeOptions?.length ? sizeOptions[0] : null);
 
   return (
     <Layout>
@@ -38,59 +40,64 @@ const ProductPage = (props) => {
         <Container size={'large'} spacing={'min'}>
           <Breadcrumbs
             crumbs={[
-              { link: '/', label: 'Clothing' },
-              { label: `${sampleProduct.name}` },
+              { link: '/', label: category },
+              { label: name },
             ]}
           />
           <div className={styles.content}>
             <div className={styles.gallery}>
-              <Gallery images={sampleProduct.gallery} />
+              <Gallery images={gallery} />
             </div>
             <div className={styles.details}>
-              <h1>{sampleProduct.name}</h1>
-              <span className={styles.vendor}> by {sampleProduct.vendor}</span>
-
+              <h1>{name}</h1>
               <div className={styles.priceContainer}>
-                <CurrencyFormatter appendZero amount={sampleProduct.price} />
+                <CurrencyFormatter appendZero amount={price} />
               </div>
 
-              <div>
-                <SwatchList
-                  swatchList={sampleProduct.colorOptions}
-                  activeSwatch={activeSwatch}
-                  setActiveSwatch={setActiveSwatch}
-                />
-              </div>
-
-              <div className={styles.sizeContainer}>
-                <SizeList
-                  sizeList={sampleProduct.sizeOptions}
-                  activeSize={activeSize}
-                  setActiveSize={setActiveSize}
-                />
-              </div>
+              {colorOptions?.length && (
+                <div>
+                  <ColorList
+                    swatchList={colorOptions}
+                    activeSwatch={activeColor}
+                    setActiveSwatch={setActiveColor}
+                  />
+                </div>
+              )}
+              
+              {sizeOptions?.length && (
+                <div className={styles.sizeContainer}>
+                  <SizeList
+                    sizeList={sizeOptions}
+                    activeSize={activeSize}
+                    setActiveSize={setActiveSize}
+                  />
+                </div>
+              )}
 
               <div className={styles.quantityContainer}>
                 <span>Quantity</span>
-                <AdjustItem qty={qty} setQty={setQty} />
+                <AdjustItem quantity={quantity} setquantity={setquantity} />
               </div>
 
               <div className={styles.actionContainer}>
                 <div className={styles.addToButtonContainer}>
                   <Button
                     onClick={() => {
-                      showNotification();
                       updateState({
                         ...data,
                         cart: [...data.cart, {
-                          image: '/products/pdp1.jpeg',
-                          alt: '',
-                          name: 'Lambswool Crew Neck Jumper',
-                          price: 220,
-                          color: 'Anthracite Melange',
-                          size: 'xs',
+                          productCode,
+                          name,
+                          price,
+                          color: activeColor?.title,
+                          size: activeSize,
+                          description,
+                          image,
+                          category,
+                          quantity
                         }]
-                      })
+                      });
+                      navigate('/cart');
                     }}
                     fullWidth
                     level={'primary'}
@@ -101,8 +108,8 @@ const ProductPage = (props) => {
               </div>
 
               <div className={styles.description}>
-                <p>{sampleProduct.description}</p>
-                <span>Product code: {sampleProduct.productCode}</span>
+                <p>{description}</p>
+                <span>Product code: {productCode}</span>
               </div>
 
               <div className={styles.informationContainer}>
@@ -112,7 +119,7 @@ const ProductPage = (props) => {
                   title={'composition & care'}
                 >
                   <p className={styles.information}>
-                    {sampleProduct.description}
+                    {description}
                   </p>
                 </Accordion>
                 <Accordion
@@ -121,12 +128,12 @@ const ProductPage = (props) => {
                   title={'delivery & returns'}
                 >
                   <p className={styles.information}>
-                    {sampleProduct.description}
+                    {description}
                   </p>
                 </Accordion>
                 <Accordion type={'plus'} customStyle={styles} title={'help'}>
                   <p className={styles.information}>
-                    {sampleProduct.description}
+                    {description}
                   </p>
                 </Accordion>
               </div>

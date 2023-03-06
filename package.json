@@ -2,8 +2,8 @@
   "name": "gatsby-ecommerce-theme",
   "version": "1.0.0",
   "private": true,
-  "description": "An e-commerce theme designed by Matter Design for Netlify.",
-  "author": "Matter Design",
+  "description": "An e-commerce worksite.",
+  "author": "Premiere",
   "keywords": [
     "gatsby"
   ],
@@ -19,8 +19,10 @@
   "dependencies": {
     "@netlify/plugin-gatsby": "^3.5.2",
     "cypress": "^10.0.3",
+    "dotenv": "^16.0.3",
     "gatsby": "^4.5.4",
     "gatsby-plugin-manifest": "^4.14.0",
+    "gatsby-source-mongodb": "^5.7.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",

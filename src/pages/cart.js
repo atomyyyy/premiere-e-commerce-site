@@ -16,6 +16,8 @@ const CartPage = (props) => {
   const { data = {}, updateState } = useShoppingCartContext()
   const { cart = [] } = data
 
+  console.log(cart);
+
   return (
     <div>
       <div className={styles.contentContainer}>

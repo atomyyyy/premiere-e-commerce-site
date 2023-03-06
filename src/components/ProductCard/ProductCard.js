@@ -8,6 +8,7 @@ import CurrencyFormatter from '../CurrencyFormatter';
 const ProductCard = (props) => {
   const [isWishlist, setIsWishlist] = useState(false);
   const {
+    path,
     image,
     imageAlt,
     name,
@@ -19,7 +20,7 @@ const ProductCard = (props) => {
   } = props;
 
   const handleRouteToProduct = () => {
-    navigate('/product/sample');
+    navigate(`/product/${path}`);
   };
 
   const handleQuickView = (e) => {
@@ -46,20 +47,6 @@ const ProductCard = (props) => {
           onClick={(e) => handleQuickView(e)}
         >
           <Icon symbol={'bagPlus'} />
-        </div>
-        <div
-          className={styles.heartContainer}
-          role={'presentation'}
-          onClick={(e) => handleFavorite(e)}
-        >
-          <Icon symbol={'heart'} />
-          <div
-            className={`${styles.heartFillContainer} ${
-              isWishlist === true ? styles.show : styles.hide
-            }`}
-          >
-            <Icon symbol={'heartFill'}></Icon>
-          </div>
         </div>
       </div>
       <div className={styles.detailsContainer}>

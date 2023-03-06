@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import Container from '../components/Container';
 import Hero from '../components/Hero';
@@ -11,8 +12,23 @@ import { generateMockProductData } from '../helpers/mock';
 import * as styles from './index.module.css';
 
 const IndexPage = (prop) => {
-  const newArrivals = generateMockProductData(3, 'shirt');
-
+  const products = useStaticQuery(graphql`query ClothingProductQuery {
+    allMongodbECommerceProduct(filter: {
+			isActive: {
+				eq: true
+      }
+    }) {
+    edges {
+        node {
+          productCode
+          category
+          price
+          name
+          image
+        }
+      }
+    }
+  }`).allMongodbECommerceProduct.edges.map(item => item.node);
   return (
     <Layout disablePaddingBottom>
       {/* Hero Container */}
@@ -22,16 +38,16 @@ const IndexPage = (prop) => {
         title={'Essentials for a cold winter'}
       />
 
-      {/* Clothing */}
-      <div key='clothing' className={styles.newArrivalsContainer}>
+      {/* Clothings */}
+      <div key='Clothings' className={styles.newArrivalsContainer}>
         <Container>
-          <Title name={'Clothing'} />
+          <Title name={'Clothings'} />
           <ProductCardGrid
             spacing={true}
             showSlider
-            height={480}
+            height={350}
             columns={4}
-            data={newArrivals}
+            data={products.filter(({ category }) => category === 'clothings')}
           />
         </Container>
       </div>
@@ -43,9 +59,9 @@ const IndexPage = (prop) => {
           <ProductCardGrid
             spacing={true}
             showSlider
-            height={480}
-            columns={3}
-            data={newArrivals}
+            height={350}
+            columns={4}
+            data={products.filter(({ category }) => category === 'accessories')}
           />
         </Container>
       </div>

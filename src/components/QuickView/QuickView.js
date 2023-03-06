@@ -7,11 +7,12 @@ import SwatchList from '../SwatchList';
 
 import { generateMockProductData } from '../../helpers/mock';
 import AddItemNotificationContext from '../../context/AddItemNotificationProvider';
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
 import * as styles from './QuickView.module.css';
 
 const QuickView = (props) => {
-  const { close, buttonTitle = 'Add to Bag' } = props;
+  const { close, buttonTitle = 'Add to Cart' } = props;
   const sampleProduct = generateMockProductData(1, 'sample')[0];
 
   const ctxAddItemNotification = useContext(AddItemNotificationContext);
@@ -21,9 +22,23 @@ const QuickView = (props) => {
   );
   const [activeSize, setActiveSize] = useState(sampleProduct.sizeOptions[0]);
 
+  const { data = {}, updateState } = useShoppingCartContext();
+  const { cart = [] } = data;
+
   const handleAddToBag = () => {
     close();
     showNotification();
+    updateState({
+      ...data,
+      cart: [...data.cart, {
+        image: '/products/pdp1.jpeg',
+        alt: '',
+        name: 'Lambswool Crew Neck Jumper',
+        price: 220,
+        color: 'Anthracite Melange',
+        size: 'xs',
+      }]
+    })
   };
 
   return (

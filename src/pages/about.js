@@ -5,19 +5,6 @@ import Layout from '../components/Layout/Layout';
 
 import * as styles from './about.module.css';
 const AboutPage = (props) => {
-  let historyRef = useRef();
-  let valuesRef = useRef();
-  let sustainabilityRef = useRef();
-
-  const handleScroll = (elementReference) => {
-    if (elementReference) {
-      window.scrollTo({
-        behavior: 'smooth',
-        top: elementReference.current.offsetTop - 280,
-      });
-    }
-  };
-
   return (
     <Layout disablePaddingBottom>
       <div className={styles.root}>
@@ -25,7 +12,7 @@ const AboutPage = (props) => {
           <div className={styles.detailContainer}>
             <p>
               Founded in 1860, Sydney is an innovative British brand with a
-              contemporary edge. We make timeless everyday luxury clothing.
+              contemporary edge. We make timeless everyday luxury Clothings.
             </p>
             <br />
             <br />

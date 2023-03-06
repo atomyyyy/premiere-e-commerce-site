@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 
-import AddNotification from '../AddNotification';
 import Brand from '../Brand';
 import Container from '../Container';
 import Config from '../../config.json';
-import Drawer from '../Drawer';
 import ExpandedMenu from '../ExpandedMenu';
 import Icon from '../Icons/Icon';
-import MiniCart from '../MiniCart';
-import MobileNavigation from '../MobileNavigation';
 import * as styles from './Header.module.css';
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
 const Header = (prop) => {
-  const [showMiniCart, setShowMiniCart] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
 
@@ -93,8 +88,8 @@ const Header = (prop) => {
               aria-label="Cart"
               className={`${styles.iconButton} ${styles.iconContainer} ${styles.bagIconContainer}`}
               onClick={() => {
-                setShowMiniCart(true);
                 setMobileMenu(false);
+                navigate('/cart');
               }}
             >
               <Icon symbol={'bag'}></Icon>
@@ -104,9 +99,6 @@ const Header = (prop) => {
                 </div>
               )}
             </button>
-            <div className={styles.notificationContainer}>
-              <AddNotification openCart={() => setShowMiniCart(true)} />
-            </div>
           </div>
         </div>
       </Container>
@@ -123,24 +115,6 @@ const Header = (prop) => {
         <Container size={'large'} spacing={'min'}>
           <ExpandedMenu menu={menu} />
         </Container>
-      </div>
-
-      {/* minicart container */}
-      <Drawer visible={showMiniCart} close={() => setShowMiniCart(false)}>
-        <MiniCart />
-      </Drawer>
-
-      {/* mobile menu */}
-      <div className={styles.mobileMenuContainer}>
-        <Drawer
-          hideCross
-          top={'98px'}
-          isReverse
-          visible={mobileMenu}
-          close={() => setMobileMenu(false)}
-        >
-          <MobileNavigation close={() => setMobileMenu(false)} />
-        </Drawer>
       </div>
     </div>
   );
