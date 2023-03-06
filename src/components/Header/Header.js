@@ -21,8 +21,8 @@ const Header = (prop) => {
   const [menu, setMenu] = useState();
   const [activeMenu, setActiveMenu] = useState();
 
-  const { data } = useShoppingCartContext();
-  const { cart } = data;
+  const { data = {} } = useShoppingCartContext();
+  const { cart = [] } = data;
   const cartCount = cart.length;
 
   const handleHover = (navObject) => {
