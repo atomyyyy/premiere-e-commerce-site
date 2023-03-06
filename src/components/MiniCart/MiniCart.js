@@ -10,8 +10,8 @@ import * as styles from './MiniCart.module.css';
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
 const MiniCart = (props) => {
-  const { data, updateState } = useShoppingCartContext()
-  const { cart } = data
+  const { data = {}, updateState } = useShoppingCartContext()
+  const { cart = [] } = data
 
   return (
     <div className={styles.root}>

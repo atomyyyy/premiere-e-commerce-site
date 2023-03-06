@@ -13,8 +13,8 @@ import * as styles from './cart.module.css';
 import { useShoppingCartContext } from '../context/ShoppingCartContextProvider';
 
 const CartPage = (props) => {
-  const { data, updateState } = useShoppingCartContext()
-  const { cart } = data
+  const { data = {}, updateState } = useShoppingCartContext()
+  const { cart = [] } = data
 
   return (
     <div>

@@ -29,8 +29,8 @@ const ProductPage = (props) => {
   );
   const [activeSize, setActiveSize] = useState(sampleProduct.sizeOptions[0]);
 
-  const { data, updateState } = useShoppingCartContext();
-  const { cart } = data
+  const { data = {}, updateState } = useShoppingCartContext();
+  const { cart = [] } = data
 
   return (
     <Layout>
