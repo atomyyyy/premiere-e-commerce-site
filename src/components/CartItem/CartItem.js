@@ -12,19 +12,17 @@ import { navigate } from 'gatsby';
 const CartItem = (props) => {
   const [showQuickView, setShowQuickView] = useState(false);
   const { 
+    idx,
     productCode,
     name,
     price,
     color,
     size,
-    description,
     image,
-    category,
-    quantity
+    quantity,
+    onItemUpdate = () => {},
+    onItemDelete = () => {}
   } = props;
-
-  console.log(color);
-  // productCode, image, alt, color, name, size, price 
 
   return (
     <div className={styles.root}>
@@ -50,13 +48,21 @@ const CartItem = (props) => {
         </div>
       </div>
       <div className={styles.adjustItemContainer}>
-        <AdjustItem />
+        <AdjustItem originalQuantity={quantity} onQuantityUpdate={(qty) => onItemUpdate({
+          productCode,
+          name,
+          price,
+          color,
+          size,
+          image,
+          quantity: qty
+        })} />
       </div>
       <div className={styles.priceContainer}>
         <CurrencyFormatter amount={price} appendZero />
       </div>
       <div className={styles.removeContainer}>
-        <RemoveItem />
+        <RemoveItem onClick={onItemDelete} />
       </div>
       <Drawer visible={showQuickView} close={() => setShowQuickView(false)}>
         <QuickView close={() => setShowQuickView(false)} />

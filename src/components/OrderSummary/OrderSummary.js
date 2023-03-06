@@ -4,12 +4,18 @@ import { Link, navigate } from 'gatsby';
 import Button from '../Button';
 import FormInputField from '../FormInputField/FormInputField';
 import CurrencyFormatter from '../CurrencyFormatter';
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
 import * as styles from './OrderSummary.module.css';
 
 const OrderSummary = (props) => {
+  const { data = {} } = useShoppingCartContext();
+  const { cart = [] } = data;
   const [coupon, setCoupon] = useState('');
-  const [giftCard, setGiftCard] = useState('');
+
+  const subTotalCost = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
+  const shippingCost = 0;
+  const totalCost = subTotalCost + shippingCost;
 
   return (
     <div className={styles.root}>
@@ -19,18 +25,12 @@ const OrderSummary = (props) => {
           <div className={styles.labelContainer}>
             <span>Subtotal</span>
             <span>
-              <CurrencyFormatter amount={440} appendZero />
+              <CurrencyFormatter amount={subTotalCost} appendZero />
             </span>
           </div>
           <div className={styles.labelContainer}>
             <span>Shipping</span>
-            <span>---</span>
-          </div>
-          <div className={styles.labelContainer}>
-            <span>Tax</span>
-            <span>
-              <CurrencyFormatter amount={0} appendZero />
-            </span>
+            <span>{shippingCost}</span>
           </div>
         </div>
         <div className={styles.couponContainer}>
@@ -45,7 +45,7 @@ const OrderSummary = (props) => {
         <div className={styles.totalContainer}>
           <span>Total: </span>
           <span>
-            <CurrencyFormatter amount={440} appendZero />
+            <CurrencyFormatter amount={totalCost} appendZero />
           </span>
         </div>
       </div>

@@ -37,8 +37,20 @@ const CartPage = (props) => {
             <h3>My Cart</h3>
             <div className={styles.cartContainer}>
               <div className={styles.cartItemsContainer}>
-                {(cart||[]).map(item => (
-                  <CartItem {...item} />
+                {(cart||[]).map((item, idx) => (
+                  <CartItem {...item} idx={idx} onItemUpdate={(newItem) => {
+                    const originalCart = data.cart;
+                    originalCart[idx] = newItem;
+                    updateState({
+                      ...data,
+                      cart: originalCart
+                    })
+                  }} onItemDelete={() => {
+                    updateState({
+                      ...data,
+                      cart: data.cart.filter((item, index) => index !== idx)
+                    })
+                  }} />
                 ))}
               </div>
               <OrderSummary />

@@ -4,12 +4,18 @@ import Icon from '../Icons/Icon';
 import * as styles from './AdjustItem.module.css';
 
 const AdjustItem = (props) => {
-  const { isTransparent } = props;
-  const [qty, setQty] = useState(1);
+  const {
+    isTransparent,
+    originalQuantity = 1,
+    onQuantityUpdate = (num) => {}
+  } = props;
+  console.log(props);
+  const [qty, setQty] = useState(originalQuantity);
 
   const handleOnChange = (e) => {
     const num = parseInt(e.target.value);
     setQty(num);
+    onQuantityUpdate(num);
   };
 
   return (
@@ -24,6 +30,7 @@ const AdjustItem = (props) => {
         onClick={() => {
           if (qty <= 1) return;
           setQty(qty - 1);
+          onQuantityUpdate(qty-1);
         }}
       >
         <Icon symbol={'minus'}></Icon>
@@ -38,7 +45,10 @@ const AdjustItem = (props) => {
       </div>
       <div
         role={'presentation'}
-        onClick={() => setQty(qty + 1)}
+        onClick={() => {
+          setQty(qty + 1);
+          onQuantityUpdate(qty+1);
+        }}
         className={styles.iconContainer}
       >
         <Icon symbol={'plus'}></Icon>

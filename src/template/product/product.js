@@ -34,6 +34,8 @@ const ProductPage = ({ pageContext }) => {
   const [activeColor, setActiveColor] = useState(colorOptions?.length ? colorOptions[0] : null);
   const [activeSize, setActiveSize] = useState(sizeOptions?.length ? sizeOptions[0] : null);
 
+  console.log(quantity);
+
   return (
     <Layout>
       <div className={styles.root}>
@@ -76,7 +78,7 @@ const ProductPage = ({ pageContext }) => {
 
               <div className={styles.quantityContainer}>
                 <span>Quantity</span>
-                <AdjustItem quantity={quantity} setquantity={setquantity} />
+                <AdjustItem originalQuantity={quantity} onQuantityUpdate={setquantity} />
               </div>
 
               <div className={styles.actionContainer}>
