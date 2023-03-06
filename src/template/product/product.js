@@ -9,7 +9,7 @@ import Container from '../../components/Container';
 import CurrencyFormatter from '../../components/CurrencyFormatter';
 import Gallery from '../../components/Gallery';
 import SizeList from '../../components/SizeList';
-import ColorList from '../../components/SWatchList';
+import ColorList from '../../components/SwatchList';
 import Layout from '../../components/Layout/Layout';
 
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
