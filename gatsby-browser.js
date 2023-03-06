@@ -1,7 +1,12 @@
 import React from 'react';
 
 import { NotificationProvider } from './src/context/AddItemNotificationProvider';
+import { ShoppingCartContextProvider } from './src/context/ShoppingCartContextProvider';
 
 export const wrapRootElement = ({ element }) => (
-  <NotificationProvider>{element}</NotificationProvider>
+  <ShoppingCartContextProvider>
+    <NotificationProvider>
+      {element}
+    </NotificationProvider>
+  </ShoppingCartContextProvider>
 );

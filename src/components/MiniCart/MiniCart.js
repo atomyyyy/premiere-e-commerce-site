@@ -7,28 +7,26 @@ import MiniCartItem from '../MiniCartItem';
 
 import * as styles from './MiniCart.module.css';
 
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
+
 const MiniCart = (props) => {
-  const sampleCartItem = {
-    image: '/products/pdp1.jpeg',
-    alt: '',
-    name: 'Lambswool Crew Neck Jumper',
-    price: 220,
-    color: 'Anthracite Melange',
-    size: 'xs',
-  };
+  const { data, updateState } = useShoppingCartContext()
+  const { cart } = data
 
   return (
     <div className={styles.root}>
       <div className={styles.titleContainer}>
-        <h4>My Bag</h4>
+        <h4>My Cart</h4>
       </div>
       <div className={styles.cartItemsContainer}>
-        <MiniCartItem {...sampleCartItem} />
+        {(cart||[]).map(item => (
+          <MiniCartItem {...item} />
+        ))}
       </div>
       <div className={styles.summaryContainer}>
         <div className={styles.summaryContent}>
           <div className={styles.totalContainer}>
-            <span>Total (USD)</span>
+            <span>Total (HKD)</span>
             <span>
               <CurrencyFormatter amount={220} appendZero />
             </span>
@@ -40,7 +38,7 @@ const MiniCart = (props) => {
             checkout
           </Button>
           <div className={styles.linkContainer}>
-            <Link to={'/shop'}>continue shopping</Link>
+            <Link to={'/'}>continue shopping</Link>
           </div>
         </div>
       </div>

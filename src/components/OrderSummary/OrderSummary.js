@@ -41,13 +41,6 @@ const OrderSummary = (props) => {
             id={'couponInput'}
             icon={'arrow'}
           />
-          <span>Gift Card</span>
-          <FormInputField
-            value={giftCard}
-            handleChange={(_, giftCard) => setGiftCard(giftCard)}
-            id={'couponInput'}
-            icon={'arrow'}
-          />
         </div>
         <div className={styles.totalContainer}>
           <span>Total: </span>
