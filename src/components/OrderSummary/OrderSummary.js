@@ -39,7 +39,7 @@ const OrderSummary = (props) => {
           totalCost
         }
       })
-    }).then(res => res.json()).then(res => res.statusText()).then((res) => {
+    }).then(res => res.json()).then((res) => {
       updateState({ ...data, cart: [] })
       callback({ state: res })
     });
