@@ -12,6 +12,7 @@ import SizeList from '../../components/SizeList';
 import ColorList from '../../components/SwatchList';
 import Layout from '../../components/Layout/Layout';
 import { uniqueId } from '../../helpers/general';
+import Seo from '../../components/Seo'
 
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 import { navigate } from 'gatsby';
@@ -36,115 +37,117 @@ const ProductPage = ({ pageContext }) => {
   const [activeSize, setActiveSize] = useState(sizeOptions?.length ? sizeOptions[0] : null);
 
   return (
-    <Layout>
-      <div className={styles.root}>
-        <Container size={'large'} spacing={'min'}>
-          <Breadcrumbs
-            crumbs={[
-              { link: '/', label: category },
-              { label: name },
-            ]}
-          />
-          <div className={styles.content}>
-            <div className={styles.gallery}>
-              <Gallery images={gallery} />
-            </div>
-            <div className={styles.details}>
-              <h1>{name}</h1>
-              <div className={styles.priceContainer}>
-                <CurrencyFormatter appendZero amount={price} />
+    <Seo title={`Premiere | ${name}`}>
+      <Layout>
+        <div className={styles.root}>
+          <Container size={'large'} spacing={'min'}>
+            <Breadcrumbs
+              crumbs={[
+                { link: '/', label: category },
+                { label: name },
+              ]}
+            />
+            <div className={styles.content}>
+              <div className={styles.gallery}>
+                <Gallery images={gallery} />
               </div>
-
-              {colorOptions?.length && (
-                <div>
-                  <ColorList
-                    swatchList={colorOptions}
-                    activeSwatch={activeColor}
-                    setActiveSwatch={setActiveColor}
-                  />
+              <div className={styles.details}>
+                <h1>{name}</h1>
+                <div className={styles.priceContainer}>
+                  <CurrencyFormatter appendZero amount={price} />
                 </div>
-              )}
-              
-              {sizeOptions?.length && (
-                <div className={styles.sizeContainer}>
-                  <SizeList
-                    sizeList={sizeOptions}
-                    activeSize={activeSize}
-                    setActiveSize={setActiveSize}
-                  />
+
+                {colorOptions?.length && (
+                  <div>
+                    <ColorList
+                      swatchList={colorOptions}
+                      activeSwatch={activeColor}
+                      setActiveSwatch={setActiveColor}
+                    />
+                  </div>
+                )}
+                
+                {sizeOptions?.length && (
+                  <div className={styles.sizeContainer}>
+                    <SizeList
+                      sizeList={sizeOptions}
+                      activeSize={activeSize}
+                      setActiveSize={setActiveSize}
+                    />
+                  </div>
+                )}
+
+                <div className={styles.quantityContainer}>
+                  <span>Quantity</span>
+                  <AdjustItem originalQuantity={quantity} onQuantityUpdate={setquantity} />
                 </div>
-              )}
 
-              <div className={styles.quantityContainer}>
-                <span>Quantity</span>
-                <AdjustItem originalQuantity={quantity} onQuantityUpdate={setquantity} />
-              </div>
+                <div className={styles.actionContainer}>
+                  <div className={styles.addToButtonContainer}>
+                    <Button
+                      onClick={() => {
+                        updateState({
+                          ...data,
+                          cart: [...data.cart, {
+                            cartItemId: uniqueId(),
+                            productCode,
+                            name,
+                            price,
+                            color: activeColor?.title,
+                            size: activeSize,
+                            description,
+                            image,
+                            category,
+                            quantity
+                          }]
+                        });
+                        navigate('/cart');
+                      }}
+                      fullWidth
+                      level={'primary'}
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
 
-              <div className={styles.actionContainer}>
-                <div className={styles.addToButtonContainer}>
-                  <Button
-                    onClick={() => {
-                      updateState({
-                        ...data,
-                        cart: [...data.cart, {
-                          cartItemId: uniqueId(),
-                          productCode,
-                          name,
-                          price,
-                          color: activeColor?.title,
-                          size: activeSize,
-                          description,
-                          image,
-                          category,
-                          quantity
-                        }]
-                      });
-                      navigate('/cart');
-                    }}
-                    fullWidth
-                    level={'primary'}
+                <div className={styles.description}>
+                  <p>{description}</p>
+                  <span>Product code: {productCode}</span>
+                </div>
+
+                <div className={styles.informationContainer}>
+                  <Accordion
+                    type={'plus'}
+                    customStyle={styles}
+                    title={'composition & care'}
                   >
-                    Add to Cart
-                  </Button>
+                    <p className={styles.information}>
+                      {description}
+                    </p>
+                  </Accordion>
+                  <Accordion
+                    type={'plus'}
+                    customStyle={styles}
+                    title={'delivery & returns'}
+                  >
+                    <p className={styles.information}>
+                      {description}
+                    </p>
+                  </Accordion>
+                  <Accordion type={'plus'} customStyle={styles} title={'help'}>
+                    <p className={styles.information}>
+                      {description}
+                    </p>
+                  </Accordion>
                 </div>
               </div>
-
-              <div className={styles.description}>
-                <p>{description}</p>
-                <span>Product code: {productCode}</span>
-              </div>
-
-              <div className={styles.informationContainer}>
-                <Accordion
-                  type={'plus'}
-                  customStyle={styles}
-                  title={'composition & care'}
-                >
-                  <p className={styles.information}>
-                    {description}
-                  </p>
-                </Accordion>
-                <Accordion
-                  type={'plus'}
-                  customStyle={styles}
-                  title={'delivery & returns'}
-                >
-                  <p className={styles.information}>
-                    {description}
-                  </p>
-                </Accordion>
-                <Accordion type={'plus'} customStyle={styles} title={'help'}>
-                  <p className={styles.information}>
-                    {description}
-                  </p>
-                </Accordion>
-              </div>
             </div>
-          </div>
-        </Container>
+          </Container>
 
-      </div>
-    </Layout>
+        </div>
+      </Layout>
+    </Seo>
   );
 };
 

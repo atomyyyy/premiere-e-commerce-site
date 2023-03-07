@@ -10,10 +10,11 @@ const Brand = (props) => {
       role={'presentation'}
       onClick={() => navigate('/')}
     >
+      <img src="/brand.svg" alt="My Happy SVG"/>
       {/* <h4>SYDNEY</h4> */}
-      <svg
+      {/* <svg
         width={127}
-        height={24}
+        height={50}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 127.67 23.36"
       >
@@ -39,9 +40,9 @@ const Brand = (props) => {
         />
         <path
           fill="currentColor"
-          d="M121.59.48V1l2.4,1-4.87,10.72L114.39,3.2a5.11,5.11,0,0,0-1.67-2,4.47,4.47,0,0,0-2.65-.7h-4V1l1.6.48,6.56,13.12v7.36l-1.92.48v.48h9.12V22.4l-1.92-.48V14.24l5.6-12.32,2.56-1V.48Z"
+          d="M4235,1566,c-25,-25,-52,-60,-61,-77,l-16,-32,37,6,c66,11,114,57,118,113,3,47,-28,43,-78,-10z"
         />
-      </svg>
+      </svg> */}
     </div>
   );
 };

@@ -22,7 +22,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    padding: 48px 0px 48px 0px;
+    padding: 16px 0px 24px 0px;
     margin: 0 auto;
 }
 
@@ -245,7 +245,7 @@
     }
 
     .header {
-        padding: 24px 8px 24px 8px;
+        padding: 12px 8px 12px 8px;
         margin: 0px 8px;
     }
 

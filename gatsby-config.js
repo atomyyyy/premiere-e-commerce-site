@@ -4,8 +4,9 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Sydney Ecommerce Theme`,
-    siteUrl: `https://jamm.matter.design`,
+    title: `Premiere`,
+    description: `Premiere - Simple with Details`,
+    siteUrl: `https://effervescent-pothos-fd7859.netlify.app/`,
   },
   plugins: [
     {

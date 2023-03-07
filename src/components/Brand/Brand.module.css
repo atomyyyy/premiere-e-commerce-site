@@ -4,9 +4,13 @@
     cursor: pointer;
 }
 
+.root img {
+    background: var(--standard-light-purple);
+    height: 80px;
+}
+
 @media (max-width: 800px) {
-    .root svg {
-        width: 90px;
-        height: 16.67px;
+    .root img {
+        height: 80px;
     }
 }

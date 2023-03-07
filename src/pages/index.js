@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout/Layout';
 import ProductCardGrid from '../components/ProductCardGrid';
 import Title from '../components/Title';
+import Seo from '../components/Seo';
 
 import * as styles from './index.module.css';
 
@@ -64,46 +65,48 @@ const IndexPage = (prop) => {
 
   useHashFragment()
   return (
-    <Layout disablePaddingBottom>
-      {/* Hero Container */}
-      <Hero
-        maxWidth={'100px'}
-        image={'/banner1.png'}
-        title={'Make something simple'}
-      />
+    <Seo title={`Premiere`}>
+      <Layout disablePaddingBottom>
+        {/* Hero Container */}
+        <Hero
+          maxWidth={'100px'}
+          image={'/banner1.png'}
+          title={'Make something simple'}
+        />
 
-      <section id='clothings' name='clothings'>
-        {/* Clothings */}
-        <div key='Clothings' className={styles.newArrivalsContainer}>
-          <Container>
-            <Title name={'Clothings'} />
-            <ProductCardGrid
-              spacing={true}
-              showSlider
-              height={350}
-              columns={4}
-              data={products.filter(({ category }) => category === 'clothings')}
-            />
-          </Container>
-        </div>
-      </section>
+        <section id='clothings' name='clothings'>
+          {/* Clothings */}
+          <div key='Clothings' className={styles.newArrivalsContainer}>
+            <Container>
+              <Title name={'Clothings'} />
+              <ProductCardGrid
+                spacing={true}
+                showSlider
+                height={350}
+                columns={4}
+                data={products.filter(({ category }) => category === 'clothings')}
+              />
+            </Container>
+          </div>
+        </section>
 
-      <section id='accessories' name='accessories'>
-        {/* Accessories */}
-        <div key='access' className={styles.newArrivalsContainer}>
-          <Container>
-            <Title name={'Accessories'} />
-            <ProductCardGrid
-              spacing={true}
-              showSlider
-              height={350}
-              columns={4}
-              data={products.filter(({ category }) => category === 'accessories')}
-            />
-          </Container>
-        </div>
-      </section>
-    </Layout>
+        <section id='accessories' name='accessories'>
+          {/* Accessories */}
+          <div key='access' className={styles.newArrivalsContainer}>
+            <Container>
+              <Title name={'Accessories'} />
+              <ProductCardGrid
+                spacing={true}
+                showSlider
+                height={350}
+                columns={4}
+                data={products.filter(({ category }) => category === 'accessories')}
+              />
+            </Container>
+          </div>
+        </section>
+      </Layout>
+    </Seo>
   );
 };
 
