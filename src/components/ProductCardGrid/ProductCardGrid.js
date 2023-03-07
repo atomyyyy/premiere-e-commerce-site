@@ -6,12 +6,16 @@ import ProductCard from '../ProductCard';
 import QuickView from '../QuickView';
 import Slider from '../Slider';
 
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
+
 const ProductCardGrid = (props) => {
   const [showQuickView, setShowQuickView] = useState(false);
   const { height, columns = 3, data, spacing, showSlider = false } = props;
   const columnCount = {
     gridTemplateColumns: `repeat(${columns}, 1fr)`,
   };
+
+  const { data: { activeProduct, ...otherShoppgingCartContext }, updateState } = useShoppingCartContext();
 
   const renderCards = () => {
     return data.map((product, index) => {
@@ -27,7 +31,13 @@ const ProductCardGrid = (props) => {
           meta={product.meta}
           originalPrice={product.originalPrice}
           link={product.link}
-          showQuickView={() => setShowQuickView(true)}
+          showQuickView={() => {
+            updateState({
+              ...otherShoppgingCartContext,
+              activeProduct: product
+            })
+            setShowQuickView(true)
+          }}
         />
       );
     });

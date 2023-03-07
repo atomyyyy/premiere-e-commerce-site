@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from 'react'
 
 const defaultState = {
   cart: [],
+  activeProduct: null
 }
 const ShoppingCartContext = createContext(defaultState)
 

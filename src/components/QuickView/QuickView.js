@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import Button from '../Button';
 import CurrencyFormatter from '../CurrencyFormatter';
 import SizeList from '../SizeList';
 import SwatchList from '../SwatchList';
 
-import { generateMockProductData } from '../../helpers/mock';
 import AddItemNotificationContext from '../../context/AddItemNotificationProvider';
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
@@ -13,72 +12,91 @@ import * as styles from './QuickView.module.css';
 
 const QuickView = (props) => {
   const { close, buttonTitle = 'Add to Cart' } = props;
-  const sampleProduct = generateMockProductData(1, 'sample')[0];
+
+  const { data = {}, updateState } = useShoppingCartContext();
+  const { cart = [], activeProduct = {} } = data;
 
   const ctxAddItemNotification = useContext(AddItemNotificationContext);
   const showNotification = ctxAddItemNotification.showNotification;
-  const [activeSwatch, setActiveSwatch] = useState(
-    sampleProduct.colorOptions[0]
-  );
-  const [activeSize, setActiveSize] = useState(sampleProduct.sizeOptions[0]);
 
-  const { data = {}, updateState } = useShoppingCartContext();
-  const { cart = [] } = data;
+  const [activeColor, setActiveColor] = useState(
+    activeProduct?.colorOptions?.length ? activeProduct?.colorOptions[0] : null 
+  );
+  const [activeSize, setActiveSize] = useState(
+    activeProduct?.sizeOptions?.length ? activeProduct?.sizeOptions[0] : null
+  );
+
+  useEffect(() => {
+    setActiveColor(activeProduct?.colorOptions?.length ? activeProduct?.colorOptions[0] : null)
+    setActiveSize( activeProduct?.sizeOptions?.length ? activeProduct?.sizeOptions[0] : null)
+  }, [activeProduct])
 
   const handleAddToBag = () => {
     close();
     showNotification();
     updateState({
       ...data,
-      cart: [...data.cart, {
-        image: '/products/pdp1.jpeg',
-        alt: '',
-        name: 'Lambswool Crew Neck Jumper',
-        price: 220,
-        color: 'Anthracite Melange',
-        size: 'xs',
+      cart: [...cart, {
+        productCode: activeProduct?.productCode,
+        name: activeProduct?.name,
+        price: activeProduct?.price,
+        color: activeColor?.title,
+        size: activeSize,
+        description: activeProduct?.description,
+        image: activeProduct?.image,
+        category: activeProduct?.category,
+        quantity: 1
       }]
     })
   };
 
-  return (
-    <div className={styles.root}>
-      <div className={styles.titleContainer}>
-        <h4>Select Options</h4>
-      </div>
-      <div className={styles.contentContainer}>
-        <div className={styles.productContainer}>
-          <span className={styles.productName}>{sampleProduct.name}</span>
-          <div className={styles.price}>
-            <CurrencyFormatter amount={sampleProduct.price}></CurrencyFormatter>
+  if (activeProduct) {
+    return (
+      <div className={styles.root}>
+        <div className={styles.titleContainer}>
+          <h4>Select Options</h4>
+        </div>
+        <div className={styles.contentContainer}>
+          <div className={styles.productContainer}>
+            <span className={styles.productName}>{activeProduct?.name}</span>
+            <div className={styles.price}>
+              <CurrencyFormatter amount={activeProduct?.price}></CurrencyFormatter>
+            </div>
+            <div className={styles.productImageContainer}>
+              <img alt={activeProduct?.alt} src={activeProduct?.image}></img>
+            </div>
           </div>
-          <div className={styles.productImageContainer}>
-            <img alt={sampleProduct.alt} src={sampleProduct.image}></img>
-          </div>
+  
+          {activeColor && activeProduct?.colorOptions?.length && (
+            <div className={styles.sectionContainer}>
+              <SwatchList
+                swatchList={activeProduct?.colorOptions || []}
+                activeSwatch={activeColor}
+                setActiveSwatch={setActiveColor}
+              />
+            </div>
+          )}
+  
+          {activeSize && activeProduct?.sizeOptions?.length && (
+            <div className={styles.sectionContainer}>
+              <SizeList
+                sizeList={activeProduct?.sizeOptions}
+                activeSize={activeSize}
+                setActiveSize={setActiveSize}
+              />
+            </div>
+          )}
+          
+          <Button onClick={() => handleAddToBag()} fullWidth level={'primary'}>
+            {buttonTitle}
+          </Button>
         </div>
-
-        <div className={styles.sectionContainer}>
-          <SwatchList
-            swatchList={sampleProduct.colorOptions}
-            activeSwatch={activeSwatch}
-            setActiveSwatch={setActiveSwatch}
-          />
-        </div>
-
-        <div className={styles.sectionContainer}>
-          <SizeList
-            sizeList={sampleProduct.sizeOptions}
-            activeSize={activeSize}
-            setActiveSize={setActiveSize}
-          />
-        </div>
-
-        <Button onClick={() => handleAddToBag()} fullWidth level={'primary'}>
-          {buttonTitle}
-        </Button>
       </div>
-    </div>
-  );
+    );
+  }
+
+  return <div></div>
+
 };
 
 export default QuickView;

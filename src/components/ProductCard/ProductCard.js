@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { navigate } from 'gatsby';
 import * as styles from './ProductCard.module.css';
 
@@ -6,7 +6,6 @@ import Icon from '../Icons/Icon';
 import CurrencyFormatter from '../CurrencyFormatter';
 
 const ProductCard = (props) => {
-  const [isWishlist, setIsWishlist] = useState(false);
   const {
     path,
     image,
@@ -26,11 +25,6 @@ const ProductCard = (props) => {
   const handleQuickView = (e) => {
     e.stopPropagation();
     showQuickView();
-  };
-
-  const handleFavorite = (e) => {
-    e.stopPropagation();
-    setIsWishlist(!isWishlist);
   };
 
   return (

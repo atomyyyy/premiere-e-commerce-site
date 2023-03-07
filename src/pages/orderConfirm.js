@@ -5,7 +5,8 @@ import ActionCard from '../components/ActionCard';
 import Container from '../components/Container';
 import Layout from '../components/Layout/Layout';
 
-const OrderConfirmPage = (props) => {
+const OrderConfirmPage = ({ location }) => {
+  const { state: { orderId } } = location;
   return (
     <Layout disablePaddingBottom>
       <Container size={'medium'}>
@@ -13,7 +14,13 @@ const OrderConfirmPage = (props) => {
           <h1>Thank You!</h1>
           <p>
             We are now processing your order. If you have any concerns feel free
-            to email us at customerservice@example.com
+            to email us at customerservice@example.com.
+          </p>
+          <p>
+            Your order Id: {orderId}
+          </p>
+          <p>
+            Please do something to pay money
           </p>
           <div className={styles.actionContainer}>
 

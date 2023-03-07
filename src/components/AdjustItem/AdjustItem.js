@@ -9,7 +9,6 @@ const AdjustItem = (props) => {
     originalQuantity = 1,
     onQuantityUpdate = (num) => {}
   } = props;
-  console.log(props);
   const [qty, setQty] = useState(originalQuantity);
 
   const handleOnChange = (e) => {

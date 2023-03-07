@@ -39,13 +39,13 @@ const CartItem = (props) => {
           <span>Color: {color}</span>
           <span>Size: {size}</span>
         </div>
-        <div
+        {/* <div
           className={styles.editContainer}
           role={'presentation'}
           onClick={() => setShowQuickView(true)}
         >
           <span>Edit</span>
-        </div>
+        </div> */}
       </div>
       <div className={styles.adjustItemContainer}>
         <AdjustItem originalQuantity={quantity} onQuantityUpdate={(qty) => onItemUpdate({

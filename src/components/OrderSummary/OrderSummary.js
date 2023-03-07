@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, navigate } from 'gatsby';
+import axios from 'axios';
 
 import Button from '../Button';
 import FormInputField from '../FormInputField/FormInputField';
@@ -9,13 +10,36 @@ import { useShoppingCartContext } from '../../context/ShoppingCartContextProvide
 import * as styles from './OrderSummary.module.css';
 
 const OrderSummary = (props) => {
-  const { data = {} } = useShoppingCartContext();
+  const { data = {}, updateState } = useShoppingCartContext();
   const { cart = [] } = data;
-  const [coupon, setCoupon] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [name, setName] = useState('');
 
   const subTotalCost = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
   const shippingCost = 0;
   const totalCost = subTotalCost + shippingCost;
+
+  const onOrderConfirm = (callback) => {
+    axios.post(
+      `${process.env.GATSBY_API_BASE_PATH}/checkout`,{
+        person: {
+          name,
+          email,
+          address
+        },
+        cart,
+        cost: {
+          subTotalCost,
+          shippingCost,
+          totalCost
+        }
+      }
+    ).then((res) => {
+      updateState({ ...data, cart: [] })
+      callback({ state: res })
+    });
+  }
 
   return (
     <div className={styles.root}>
@@ -34,12 +58,23 @@ const OrderSummary = (props) => {
           </div>
         </div>
         <div className={styles.couponContainer}>
-          <span>Coupon Code</span>
+          <span>Name</span>
           <FormInputField
-            value={coupon}
-            handleChange={(_, coupon) => setCoupon(coupon)}
-            id={'couponInput'}
-            icon={'arrow'}
+            value={name}
+            handleChange={(_, name) => setName(name)}
+            id={'nameInput'}
+          />
+          <span>Email</span>
+          <FormInputField
+            value={email}
+            handleChange={(_, email) => setEmail(email)}
+            id={'emailInput'}
+          />
+          <span>Address</span>
+          <FormInputField
+            value={address}
+            handleChange={(_, address) => setAddress(address)}
+            id={'addressInput'}
           />
         </div>
         <div className={styles.totalContainer}>
@@ -51,9 +86,10 @@ const OrderSummary = (props) => {
       </div>
       <div className={styles.actionContainer}>
         <Button
-          onClick={() => navigate('/orderConfirm')}
+          onClick={() => onOrderConfirm((orderDetail) => navigate('/orderConfirm', orderDetail))}
           fullWidth
           level={'primary'}
+          form='netlify-submission-log'
         >
           checkout
         </Button>
@@ -61,6 +97,9 @@ const OrderSummary = (props) => {
           <Link to={'/'}>CONTINUE SHOPPING</Link>
         </div>
       </div>
+      <form name='netlify-submission-log' data-netlify='true'>
+        <input type="hidden"  name="action" value="submission" />
+      </form>
     </div>
   );
 };

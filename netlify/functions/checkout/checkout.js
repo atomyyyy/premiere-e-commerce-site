@@ -7,6 +7,13 @@ const url = process.env.DATABASE_CONNECTION_STRING;
 const client = new MongoClient(url);
 
 const handler = async (event) => {
+  if (event.httpMethod !== 'OPTIONS') {
+    return {
+      body: '',
+      statusCode: 200
+    }
+  }
+
   if (event.httpMethod !== 'POST') {
     return {
       body: JSON.stringify({ message: 'BAD_REQUEST' }),

@@ -50,12 +50,12 @@
     },
     {
       "menuLabel": "Clothings",
-      "menuLink": "/",
+      "menuLink": "/#clothings",
       "category": null
     },
     {
       "menuLabel": "Accessories",
-      "menuLink": "/",
+      "menuLink": "/#accessories",
       "category": null
     }
   ],

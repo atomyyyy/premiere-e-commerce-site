@@ -17,6 +17,7 @@ const Button = ({
   link,
   fullWidth,
   theme,
+  form
 }) => {
   const classes = level ? [styles.button] : [styles.link];
 
@@ -71,6 +72,7 @@ const Button = ({
           onClick={onClick}
           type={type}
           disabled={disabled}
+          form={form}
         >
           {children}
         </button>
