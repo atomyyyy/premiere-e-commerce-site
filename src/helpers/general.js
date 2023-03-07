@@ -62,6 +62,10 @@ function isEmpty(input) {
 function uniqueId() {
   return 'id' + (new Date()).getTime();
 }
+
+function isBrowser() {
+  return typeof window !== "undefined"
+} 
 /**
  * Checks if user is authenticated
  * 
@@ -82,4 +86,4 @@ function isAuth() {
   }
 }
 
-export { isNumeric, validateEmail, validateStrongPassword, isEmpty, isAuth };
+export { isNumeric, validateEmail, validateStrongPassword, isEmpty, isAuth, uniqueId, isBrowser };

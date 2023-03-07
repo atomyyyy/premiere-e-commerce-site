@@ -7,6 +7,8 @@ import Config from '../../config.json';
 import ExpandedMenu from '../ExpandedMenu';
 import Icon from '../Icons/Icon';
 import * as styles from './Header.module.css';
+
+import { isBrowser } from '../../helpers/general';
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
 const Header = (prop) => {
@@ -77,7 +79,7 @@ const Header = (prop) => {
             onClick={() => navigate('/')}
             className={styles.burgerIcon}
           >
-            { window !== undefined && window?.location?.pathname !== '/' && <Icon symbol={'caret'} style={{ transform: 'rotate(90deg)'}}></Icon>}
+            { isBrowser() && window.location.pathname !== '/' && <Icon symbol={'caret'} style={{ transform: 'rotate(90deg)'}}></Icon>}
           </div>
           <Brand />
           <div className={styles.actionContainers}>
