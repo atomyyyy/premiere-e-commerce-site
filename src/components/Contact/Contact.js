@@ -51,7 +51,7 @@ const Contact = (props) => {
       </div>
 
       <div className={styles.contactContainer}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)} data-netlify="true">
           <div className={styles.contactForm}>
             <FormInputField
               id={'name'}
