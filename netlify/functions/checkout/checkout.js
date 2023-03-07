@@ -7,7 +7,7 @@ const url = process.env.DATABASE_CONNECTION_STRING;
 const client = new MongoClient(url);
 
 const handler = async (event) => {
-  if (event.httpMethod !== 'OPTIONS') {
+  if (event.httpMethod === 'OPTIONS') {
     return {
       body: '',
       statusCode: 200
@@ -33,7 +33,7 @@ const handler = async (event) => {
   })
 
   const createdDocument = await collection.findOne({ orderId }, { _id: 0 });
-
+  
   return {
     body: JSON.stringify(createdDocument),
     headers: { 'Content-Type': 'application/json'},
