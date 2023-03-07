@@ -226,6 +226,7 @@
     }
 
     .burgerIcon svg {
+        transform: rotate(90deg);
         width: 20px;
         height: 20px;
     }

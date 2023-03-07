@@ -12,7 +12,6 @@ import { navigate } from 'gatsby';
 const CartItem = (props) => {
   const [showQuickView, setShowQuickView] = useState(false);
   const { 
-    idx,
     productCode,
     name,
     price,

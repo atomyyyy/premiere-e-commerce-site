@@ -33,8 +33,8 @@
   --standard-black: #000000;
   --standard-white: #ffffff;
   --standard-grey: #e2e2e2;
-  --standard-dark-grey: #545250;
-  --standard-light-grey: #FCFAF6;
+  --standard-dark-purple: #6d0986;
+  --standard-light-purple: #fae8ff;
   --grey-passthough: #979797;
   --grey-border: #A9A9A8;
   --grey-placeholder: #716868;
@@ -46,7 +46,7 @@
   --bg-dark: #383634;
   --bg-close-icon: #E9E7E3;
   --bg-light-gray: #e5e5e5;
-  --standard-gold: #B59F66;
+  --standard-gold: #7104ff;
   --sale: #902F15;
   --error: #9A3515;
 

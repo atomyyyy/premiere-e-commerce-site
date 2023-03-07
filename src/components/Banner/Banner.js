@@ -9,7 +9,7 @@ const Banner = (props) => {
     color,
     bgImage,
     height,
-    bgColor = 'var(--standard-light-grey)',
+    bgColor = 'var(--standard-light-purple)',
     hideSubtitleOnMobile = true,
   } = props;
 

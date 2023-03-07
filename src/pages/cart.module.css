@@ -6,7 +6,7 @@
 .contentContainer {
     width: 100%;
     min-height: 70vh;
-    background-color: var(--standard-light-grey);
+    background-color: var(--standard-light-purple);
     padding-top: 32px;
     padding-bottom: 88px;
 }

@@ -21,13 +21,12 @@
     background-color: var(--standard-black);;
     text-transform: uppercase;
     font-weight: 500;
-    
 }
 
 @media (hover: hover) {
     .primary:hover {
-        border: 2px solid var(--standard-dark-grey);
-        background-color: var(--standard-dark-grey);
+        border: 2px solid var(--standard-dark-purple);
+        background-color: var(--standard-dark-purple);
     }
 }
 

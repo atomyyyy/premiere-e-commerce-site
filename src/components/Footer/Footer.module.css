@@ -97,7 +97,7 @@
 }
 
 .contentBottomContainer {
-    border-top: 1px solid var(--standard-dark-grey);
+    border-top: 1px solid var(--standard-dark-purple);
 }
 
 .contentBottom {
@@ -182,7 +182,7 @@
 
 @media (hover: hover) {
     .socialIconContainer:hover {
-        background-color: var(--standard-dark-grey)
+        background-color: var(--standard-dark-purple)
     }
 }
 

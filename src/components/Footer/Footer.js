@@ -1,28 +1,12 @@
 import { Link } from 'gatsby';
-import React, { useState } from 'react';
+import React from 'react';
 
 import Accordion from '../Accordion';
 import Container from '../Container';
-import Dropdown from '../Dropdown/Dropdown';
-import FormInputField from '../FormInputField/FormInputField';
-import Icon from '../Icons/Icon';
-import Button from '../Button';
 import Config from '../../config.json';
 import * as styles from './Footer.module.css';
 
 const Footer = (prop) => {
-  const [email, setEmail] = useState('');
-
-  const subscribeHandler = (e) => {
-    e.preventDefault();
-    setEmail('');
-    console.log('Subscribe this email: ', email);
-  };
-
-  const handleSocialClick = (platform) => {
-    window.open(Config.social[platform]);
-  };
-
   const renderLinks = (linkCollection) => {
     return (
       <ul className={styles.linkList}>

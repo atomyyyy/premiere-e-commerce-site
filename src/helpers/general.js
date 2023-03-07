@@ -59,6 +59,9 @@ function isEmpty(input) {
   if (input === '' || input === null || input === undefined) return true;
 }
 
+function uniqueId() {
+  return 'id' + (new Date()).getTime();
+}
 /**
  * Checks if user is authenticated
  * 

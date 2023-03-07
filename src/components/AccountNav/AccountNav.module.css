@@ -16,11 +16,11 @@
 }
 
 .webLink:hover {
-    background-color: var(--standard-light-grey);
+    background-color: var(--standard-light-purple);
 }
 
 .activeLink {
-    background-color: var(--standard-light-grey);
+    background-color: var(--standard-light-purple);
     font-weight: 500;
 }
 

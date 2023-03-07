@@ -74,13 +74,10 @@ const Header = (prop) => {
           </div>
           <div
             role={'presentation'}
-            onClick={() => {
-              setMobileMenu(!mobileMenu);
-              // setDepth(0);
-            }}
+            onClick={() => navigate('/')}
             className={styles.burgerIcon}
           >
-            <Icon symbol={`${mobileMenu === true ? 'cross' : 'burger'}`}></Icon>
+            { window.location.pathname !== '/' && <Icon symbol={'caret'} style={{ transform: 'rotate(90deg)'}}></Icon>}
           </div>
           <Brand />
           <div className={styles.actionContainers}>

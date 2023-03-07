@@ -29,7 +29,8 @@ const handler = async (event) => {
   const orderId = crypto.randomUUID();
   await collection.insertOne({
     ...JSON.parse(event.body),
-    orderId
+    orderId,
+    createDatetime: new Date()
   })
 
   const createdDocument = await collection.findOne({ orderId }, { _id: 0 });

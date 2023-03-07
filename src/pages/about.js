@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import Container from '../components/Container';
 import Layout from '../components/Layout/Layout';
