@@ -11,7 +11,7 @@ import Gallery from '../../components/Gallery';
 import SizeList from '../../components/SizeList';
 import ColorList from '../../components/SwatchList';
 import Layout from '../../components/Layout/Layout';
-import uniqueId from '../../helpers/general';
+import { uniqueId } from '../../helpers/general';
 
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 import { navigate } from 'gatsby';

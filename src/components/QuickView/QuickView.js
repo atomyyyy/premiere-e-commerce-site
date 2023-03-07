@@ -4,7 +4,7 @@ import Button from '../Button';
 import CurrencyFormatter from '../CurrencyFormatter';
 import SizeList from '../SizeList';
 import SwatchList from '../SwatchList';
-import uniqueId from '../../helpers/general';
+import { uniqueId } from '../../helpers/general';
 
 import AddItemNotificationContext from '../../context/AddItemNotificationProvider';
 import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
