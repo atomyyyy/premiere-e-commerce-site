@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 const crypto = require('crypto');
 
 const url = process.env.DATABASE_CONNECTION_STRING;
-const client = new MongoClient(url);
+const client = new MongoClient(url, {useUnifiedTopology: true});
 
 const handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
@@ -33,7 +33,7 @@ const handler = async (event) => {
   })
 
   const createdDocument = await collection.findOne({ orderId }, { _id: 0 });
-  
+
   return {
     body: JSON.stringify(createdDocument),
     headers: { 'Content-Type': 'application/json'},
