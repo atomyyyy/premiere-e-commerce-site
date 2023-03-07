@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, navigate } from 'gatsby';
-import axios from 'axios';
 
 import Button from '../Button';
 import FormInputField from '../FormInputField/FormInputField';
@@ -21,8 +20,13 @@ const OrderSummary = (props) => {
   const totalCost = subTotalCost + shippingCost;
 
   const onOrderConfirm = (callback) => {
-    axios.post(
-      `${process.env.GATSBY_API_BASE_PATH}/checkout`,{
+    fetch(`${process.env.GATSBY_API_BASE_PATH}/checkout`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         person: {
           name,
           email,
@@ -34,8 +38,8 @@ const OrderSummary = (props) => {
           shippingCost,
           totalCost
         }
-      }
-    ).then((res) => {
+      })
+    }).then(res => res.json()).then(res => res.statusText()).then((res) => {
       updateState({ ...data, cart: [] })
       callback({ state: res })
     });
