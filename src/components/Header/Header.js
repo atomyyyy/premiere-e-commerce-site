@@ -77,7 +77,7 @@ const Header = (prop) => {
             onClick={() => navigate('/')}
             className={styles.burgerIcon}
           >
-            { window.location.pathname !== '/' && <Icon symbol={'caret'} style={{ transform: 'rotate(90deg)'}}></Icon>}
+            { window !== undefined && window?.location?.pathname !== '/' && <Icon symbol={'caret'} style={{ transform: 'rotate(90deg)'}}></Icon>}
           </div>
           <Brand />
           <div className={styles.actionContainers}>
