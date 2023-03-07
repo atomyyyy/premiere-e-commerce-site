@@ -6,7 +6,8 @@ import Container from '../components/Container';
 import Layout from '../components/Layout/Layout';
 
 const OrderConfirmPage = ({ location }) => {
-  const { state: { orderId } } = location;
+  const { state = {} } = location;
+  const { orderId = '' } = state;
   return (
     <Layout disablePaddingBottom>
       <Container size={'medium'}>
