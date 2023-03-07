@@ -36,9 +36,9 @@
 
 .root:hover {
     background-color: var(--standard-gold);
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
 }
 
 .root:hover a {
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
 }

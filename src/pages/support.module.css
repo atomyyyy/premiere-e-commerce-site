@@ -9,7 +9,7 @@
     border-bottom: 1px solid var(--bg-light-gray);
     position: sticky;
     top: 150px;
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
 
     /* offset banner margin */
     margin-top: -64px;

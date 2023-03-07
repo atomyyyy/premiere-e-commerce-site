@@ -17,6 +17,6 @@
 }
 
 .root:hover, .isActive {
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
     background-color: var(--standard-gold);
 }

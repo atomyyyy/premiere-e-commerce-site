@@ -24,12 +24,12 @@
     transition: all ease-in-out 0.3s;
     visibility: hidden;
     opacity: 0;
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
 }
 
 .root:hover, .active {
     background-color: var(--standard-gold);
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
 }
 
 .root:hover .actionContainer {
@@ -39,7 +39,7 @@
 }
 
 .actionContainer span {
-    border-bottom: 1px solid var(--standard-white);
+    border-bottom: 1px solid var(--standard-light-purple);
     margin-right: 24px;
     cursor: pointer;
     font-weight: 500;

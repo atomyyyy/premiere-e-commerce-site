@@ -25,7 +25,7 @@
     justify-content: center;
  
     border: 1px solid var(--standard-black);
-    background: var(--standard-white);
+    background: var(--standard-light-purple);
     transition: all 0.3s ease-in-out;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .checkboxWrapper .input:checked + .box {
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
 }
 
 .checkboxWrapper .input:checked + .box .innerBox {

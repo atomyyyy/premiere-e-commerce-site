@@ -44,7 +44,7 @@
 
 .newArrivalsContainer {
     margin-top: 64px;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
 }
 
 .highlightContainer {
@@ -65,8 +65,8 @@
 }
 
 .linkContainers a {
-    color: var(--standard-white);
-    border-bottom: 1px solid var(--standard-white);
+    color: var(--standard-light-purple);
+    border-bottom: 1px solid var(--standard-light-purple);
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;

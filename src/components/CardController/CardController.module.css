@@ -3,7 +3,7 @@
     position: absolute;
     left: 0px;
     width: 100%;
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     transition: all ease-in-out 0.3s;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
 }

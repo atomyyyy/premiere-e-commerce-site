@@ -1,7 +1,7 @@
 .root {
     position: fixed;
     width: 100%;
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
     z-index: 50;
 }
@@ -89,7 +89,7 @@
 
 .menuContainer {
     position: absolute;
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     width: 100%;
 
     opacity: 0;
@@ -160,7 +160,7 @@
 
 .suggestion:hover {
     transition: all 0.3s ease-in-out;
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
     background-color: var(--standard-gold);
     border: 1px solid transparent;
 }
@@ -207,7 +207,7 @@
 }
 
 .bagNotification span{
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
     font-size: 9px;
 }
 

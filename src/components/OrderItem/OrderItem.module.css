@@ -48,7 +48,7 @@
 .detailsContainer {
     margin-left: 24px;
     margin-right: 24px;
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     transition: opacity ease-in-out 0.3s;
 }
 

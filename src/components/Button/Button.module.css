@@ -17,7 +17,7 @@
 
 .primary {
     border: 2px solid var(--standard-black);
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
     background-color: var(--standard-black);;
     text-transform: uppercase;
     font-weight: 500;
@@ -33,7 +33,7 @@
 .secondary {
     border: 2px solid var(--standard-black);
     color: var(--standard-black);
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -46,8 +46,8 @@
 }
 
 .secondary.alternate {
-    border: 2px solid var(--standard-white);
-    color: var(--standard-white);
+    border: 2px solid var(--standard-light-purple);
+    color: var(--standard-light-purple);
     background-color: transparent;
 }
 
@@ -60,7 +60,7 @@
 /* .tertiary {
     border: 1px solid var(--gray-alt);
     color: var(--standard-black);
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -73,8 +73,8 @@
 }
 
 .tertiary.alternate {
-    border: 1px solid var(--standard-white);
-    color: var(--standard-white);
+    border: 1px solid var(--standard-light-purple);
+    color: var(--standard-light-purple);
     background-color: transparent;
 }
 
@@ -123,7 +123,7 @@
     cursor: default;
     border: 2px solid var(--gray-alt);
     color: var(--gray-alt);
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     pointer-events: none;
 }
 

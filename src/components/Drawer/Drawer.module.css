@@ -19,7 +19,7 @@
 
 .content {
     position: relative;
-    background-color: var(--standard-white);
+    background-color: var(--standard-light-purple);
     width: 540px;
     transition: all ease-in-out 0.3s;
     overflow-y: auto;
@@ -31,7 +31,7 @@
     right: 30px;
     top: 30px;
     cursor: pointer;
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
 
     display: flex;
     align-items: center;

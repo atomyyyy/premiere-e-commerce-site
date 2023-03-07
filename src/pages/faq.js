@@ -13,7 +13,7 @@ const FaqPage = (props) => {
           maxWidth={'650px'}
           name={`Frequently Asked Questions`}
           bgImage={'/faqCover.png'}
-          color={'var(--standard-white)'}
+          color={'var(--standard-light-purple)'}
           height={'350px'}
         />
         <Container>

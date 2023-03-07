@@ -19,7 +19,7 @@
     position: absolute;
     bottom: 75px;
     left: 55px;
-    color: var(--standard-white);
+    color: var(--standard-light-purple);
 
     z-index: 10;
 }
@@ -37,7 +37,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-    border-bottom: 1px solid var(--standard-white);
+    border-bottom: 1px solid var(--standard-light-purple);
 }
 
 .content a:hover {

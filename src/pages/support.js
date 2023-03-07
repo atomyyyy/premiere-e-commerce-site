@@ -73,7 +73,7 @@ const SupportPage = (props) => {
           maxWidth={'650px'}
           name={current.title}
           bgImage={'/support.png'}
-          color={'var(--standard-white)'}
+          color={'var(--standard-light-purple)'}
           height={'350px'}
         />
 
