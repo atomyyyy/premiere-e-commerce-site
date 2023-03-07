@@ -21,8 +21,14 @@ const Contact = (props) => {
   };
 
   const handleSubmit = (e) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+      body: encodeURI(contactForm)
+    }).then(() => alert('Success')).then(() => {
+      setContactForm(initialState);
+    })
     e.preventDefault();
-    setContactForm(initialState);
   };
 
   return (
@@ -51,7 +57,7 @@ const Contact = (props) => {
       </div>
 
       <div className={styles.contactContainer}>
-        <form onSubmit={(e) => handleSubmit(e)} name="contact" netlify netlify-honeypot='botfield'>
+        <form onSubmit={(e) => handleSubmit(e)} name="contact" data-netlify='true' data-netlify-honeypot='botfield'>
           <div className={styles.contactForm}>
             <FormInputField
               id={'name'}
