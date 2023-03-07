@@ -15,7 +15,8 @@ const ProductCardGrid = (props) => {
     gridTemplateColumns: `repeat(${columns}, 1fr)`,
   };
 
-  const { data: { activeProduct, ...otherShoppgingCartContext }, updateState } = useShoppingCartContext();
+  const { data: shoppingCartData = {}, updateState } = useShoppingCartContext();
+  const { activeProduct = {}, ...otherShoppgingCartContext } = shoppingCartData;
 
   const renderCards = () => {
     return data.map((product, index) => {
