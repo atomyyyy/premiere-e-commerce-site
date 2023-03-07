@@ -51,7 +51,7 @@ const Contact = (props) => {
       </div>
 
       <div className={styles.contactContainer}>
-        <form onSubmit={(e) => handleSubmit(e)} data-netlify="true">
+        <form onSubmit={(e) => handleSubmit(e)} name="contact" netlify netlify-honeypot='botfield'>
           <div className={styles.contactForm}>
             <FormInputField
               id={'name'}
@@ -91,7 +91,7 @@ const Contact = (props) => {
           <Button
             className={styles.customButton}
             level={'primary'}
-            type={'buttonSubmit'}
+            type={'submit'}
           >
             submit
           </Button>
