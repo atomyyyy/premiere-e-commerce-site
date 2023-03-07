@@ -25,6 +25,8 @@ const handler = async (event) => {
     orderId
   })
 
+  const createdDocument = await collection.findOne({ orderId }, { _id: 0 });
+
   return {
     body: JSON.stringify(createdDocument),
     headers: { 'Content-Type': 'application/json'},
