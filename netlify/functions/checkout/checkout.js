@@ -27,7 +27,7 @@ const handler = async (event) => {
   const collection = db.collection('order');
 
   const orderId = crypto.randomUUID();
-  collection.insertOne({
+  await collection.insertOne({
     ...JSON.parse(event.body),
     orderId
   })
