@@ -29,6 +29,7 @@ import Twitter from './Twitter';
 import TwitterInverse from './TwitterInverse';
 import User from './User';
 import Youtube from './Youtube';
+import Whatsapp from './Whatsapp';
 
 function Icon(props) {
   switch (props.symbol) {
@@ -88,6 +89,8 @@ function Icon(props) {
       return <User />;
     case 'youtube':
       return <Youtube />;
+    case 'whatsapp':
+      return <Whatsapp />;
     default:
       return <span>Unknown icon: {props.symbol}</span>;
   }

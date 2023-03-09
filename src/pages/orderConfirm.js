@@ -4,10 +4,20 @@ import * as styles from './orderConfirm.module.css';
 import ActionCard from '../components/ActionCard';
 import Container from '../components/Container';
 import Layout from '../components/Layout/Layout';
+import Icon from '../components/Icons/Icon';
 
 const OrderConfirmPage = ({ location }) => {
-  const { state = {} } = location;
-  const { orderId = '' } = state;
+  const { state = {} } = location || {};
+  const { orderId = '', personal = {}, cart = [] } = state || {};
+  const { address = '' } = personal;
+  const onWhatsappIconClick = () => {
+    const baseUrl = 'https://api.whatsapp.com/send';
+    const searchParams = new URLSearchParams({
+      phone: 85262666176,
+      text: `我的訂單號碼: ${orderId}\n收件地址: ${address}\n訂單內容:\n${cart.map(item => `${item.name} x ${item.quantity}`).join('\n')}\n以下是我的付款收據:`.replace('/\n/g', '%0a')
+    });
+    window.open(`${baseUrl}?${searchParams.toString()}`);
+  };
   return (
     <Layout disablePaddingBottom>
       <Container size={'medium'}>
@@ -23,6 +33,9 @@ const OrderConfirmPage = ({ location }) => {
           <p>
             Please do something to pay money
           </p>
+          <div className={styles.whatsappIcon} onClick={onWhatsappIconClick}>
+            <Icon symbol={'whatsapp'}/>
+          </div>
           <div className={styles.actionContainer}>
 
             <ActionCard

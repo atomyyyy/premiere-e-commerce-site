@@ -26,6 +26,18 @@
   gap: 32px;
 }
 
+.whatsappIcon svg {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .whatsappIcon svg:hover {
+    border: 2px solid var(--standard-dark-purple);
+  }
+}
+
 @media (max-width: 800px) {
 
   .root {

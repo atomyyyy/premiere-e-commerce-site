@@ -57,7 +57,7 @@ const ProductCardGrid = (props) => {
 
       {showSlider === true && (
         <div className={styles.mobileSlider}>
-          <Slider spacing={spacing}>{data && renderCards()}</Slider>
+          <Slider infinite={false} spacing={spacing}>{data && renderCards()}</Slider>
         </div>
       )}
 
