@@ -8,13 +8,13 @@ import Icon from '../components/Icons/Icon';
 
 const OrderConfirmPage = ({ location }) => {
   const { state = {} } = location || {};
-  const { orderId = '', personal = {}, cart = [] } = state || {};
-  const { address = '' } = personal;
+  const { orderId = '', person = {}, cart = [] } = state || {};
+  const { address = '' } = person;
   const onWhatsappIconClick = () => {
     const baseUrl = 'https://api.whatsapp.com/send';
     const searchParams = new URLSearchParams({
       phone: 85262666176,
-      text: `我的訂單號碼: ${orderId}\n收件地址: ${address}\n訂單內容:\n${cart.map(item => `${item.name} x ${item.quantity}`).join('\n')}\n以下是我的付款收據:`.replace('/\n/g', '%0a')
+      text: `我的訂單號碼: ${orderId}\n\n收件地址:\n${address}\n\n訂單內容:\n${cart.map(item => `${item.name} x ${item.quantity}`).join('\n')}\n\n以下是我的付款收據:`.replace('/\n/g', '%0a')
     });
     window.open(`${baseUrl}?${searchParams.toString()}`);
   };
