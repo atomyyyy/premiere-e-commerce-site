@@ -22,6 +22,7 @@ const Contact = (props) => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append('form-name', 'contact');
     formData.append('name', contactForm.name);
