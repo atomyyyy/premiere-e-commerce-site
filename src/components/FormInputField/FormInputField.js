@@ -19,6 +19,7 @@ const FormInputField = React.forwardRef((props, ref) => {
     error,
     required,
     icon,
+    hidden = false,
   } = props;
 
   return (
@@ -42,6 +43,7 @@ const FormInputField = React.forwardRef((props, ref) => {
           onChange={(e) => handleChange(id, e.target.value)}
           disabled={disabled}
           ref={ref}
+          hidden={hidden}
         />
       )}
       {type === 'number' && (

@@ -51,7 +51,7 @@ const OrderSummary = () => {
       resetCart();
       const formData = new FormData();
       formData.append('form-name', 'order-submission-form');
-      formData.append('order-id', res.orderId);
+      formData.append('orderId', res.orderId);
       formData.append('name', formValues.name);
       formData.append('email', formValues.email);
       formData.append('address', formValues.address);
@@ -103,22 +103,24 @@ const OrderSummary = () => {
               {...register('name')}
               value={watch('name')}
               handleChange={(_, name) => setValue('name', name)}
-              id={'nameInput'}
+              id={'name'}
             />
             <span>Email</span>
             <FormInputField
               {...register('email')}
               value={watch('email')}
               handleChange={(_, email) => setValue('email', email)}
-              id={'emailInput'}
+              id={'email'}
             />
             <span>Address</span>
             <FormInputField
               {...register('address')}
               value={watch('address')}
               handleChange={(_, address) => setValue('address', address)}
-              id={'addressInput'}
+              id={'address'}
             />
+            <FormInputField id={'orderId'} hidden={true} />
+            <FormInputField id={'totalCost'} hidden={true} />
           </div>
           <div className={styles.totalContainer}>
             <span>Total: </span>
