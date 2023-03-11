@@ -1,4 +1,4 @@
-# SwatchList Component
+# ColorList Component
 
 
 ## Options
@@ -6,10 +6,10 @@ No options available for this component
 
 ## Install
 ```
-import SwatchList from 'components/SwatchList'
+import ColorList from 'components/ColorList'
 ```
 
 ## Examples
 ```
-<SwatchList />
+<ColorList />
 ```

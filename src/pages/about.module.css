@@ -32,9 +32,7 @@
 }
 
 .detailContainer {
-    margin-left: auto;
-    max-width: 800px;
-    margin-top: 164px;
+    padding: 50px;
 }
 
 .detailContainer p{

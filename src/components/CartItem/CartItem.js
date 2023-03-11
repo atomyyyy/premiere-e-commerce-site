@@ -1,71 +1,54 @@
-import React, { useState } from 'react';
-
-import AdjustItem from '../AdjustItem';
-import CurrencyFormatter from '../CurrencyFormatter';
-import Drawer from '../Drawer';
-import RemoveItem from '../RemoveItem';
-import QuickView from '../QuickView';
-
-import * as styles from './CartItem.module.css';
+import React from 'react';
 import { navigate } from 'gatsby';
 
-const CartItem = (props) => {
-  const [showQuickView, setShowQuickView] = useState(false);
-  const { 
-    productCode,
-    name,
-    price,
-    color,
-    size,
-    image,
-    quantity,
-    onItemUpdate = () => {},
-    onItemDelete = () => {}
-  } = props;
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
+import AdjustItem from '../AdjustItem';
+import CurrencyFormatter from '../CurrencyFormatter';
+import RemoveItem from '../RemoveItem';
 
+import * as styles from './CartItem.module.css';
+
+
+const CartItem = (props) => {
+  const { cartItemId } = props;
+  const { data: { cart = [] }, upsertCartItemById, removeCartItemByid } = useShoppingCartContext();
+  const existingCartItem = cartItemId && cart.find(item => item.cartItemId === cartItemId);
+
+  const fullEditItem = () => {
+    navigate(`/product/${existingCartItem.productCode}`, { state: { cartItemId }});
+  }
+
+  const onUpdateQuantity = (quantity) => {
+    upsertCartItemById({
+      ...existingCartItem,
+      quantity: Math.max(quantity, 1)
+    });
+  }
+  
   return (
     <div className={styles.root}>
-      <div
-        className={styles.imageContainer}
-        role={'presentation'}
-        onClick={() => navigate(`/product/${productCode}`)}
-      >
-        <img src={image} alt={name}></img>
+      <div className={styles.imageContainer} role={'presentation'} onClick={fullEditItem}>
+        <img src={existingCartItem.image} alt={existingCartItem.name}></img>
       </div>
       <div className={styles.itemContainer}>
-        <span className={styles.name}>{name}</span>
+        <span className={styles.name}>{existingCartItem.name}</span>
         <div className={styles.metaContainer}>
-          <span>Color: {color}</span>
-          <span>Size: {size}</span>
+          <span>顏色: {existingCartItem.color || 'N/A'}</span>
+          <span>尺寸: {existingCartItem.size || 'N/A'}</span>
         </div>
-        {/* <div
-          className={styles.editContainer}
-          role={'presentation'}
-          onClick={() => setShowQuickView(true)}
-        >
-          <span>Edit</span>
-        </div> */}
+        <div className={styles.editContainer} role={'presentation'} onClick={fullEditItem}>
+          <span>更改</span>
+        </div>
       </div>
       <div className={styles.adjustItemContainer}>
-        <AdjustItem originalQuantity={quantity} onQuantityUpdate={(qty) => onItemUpdate({
-          productCode,
-          name,
-          price,
-          color,
-          size,
-          image,
-          quantity: qty
-        })} />
+        <AdjustItem value={existingCartItem.quantity} setValue={onUpdateQuantity} />
       </div>
       <div className={styles.priceContainer}>
-        <CurrencyFormatter amount={price} appendZero />
+        <CurrencyFormatter amount={existingCartItem.price} appendZero />
       </div>
       <div className={styles.removeContainer}>
-        <RemoveItem onClick={onItemDelete} />
+        <RemoveItem onClick={() => removeCartItemByid(existingCartItem.cartItemId)} />
       </div>
-      <Drawer visible={showQuickView} close={() => setShowQuickView(false)}>
-        <QuickView close={() => setShowQuickView(false)} />
-      </Drawer>
     </div>
   );
 };

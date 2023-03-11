@@ -1,103 +1,37 @@
 import React from 'react';
 import * as styles from './Policy.module.css';
 
-const Policy = (props) => {
+import Seo from '../Seo';
+
+const Policy = () => {
   return (
     <div className={styles.root}>
+      <Seo title={`Premiere | 條款及細則`} />
       <div className={styles.section}>
-        <h3>1. Lorem Ipsum</h3>
+        <h3>1. 訂單安排</h3>
         <p>
-          Delaware limited liability company (The Sydney) collects personal
-          information that you voluntarily provide when applying or registering
-          for an account with The Upside or making a purchase on The Upside
-          website; www.theupside.com (the Website).
-        </p>
-        <p>
-          This Privacy Policy (Privacy Policy) outlines how your information is
-          collected, used and disclosed when you access or use our Services as
-          defined in our Terms. This information is collected, used and
-          disclosed in accordance with the Privacy Act 1988 (Cth) (Privacy Act).{' '}
-        </p>
-        <p>
-          This Privacy Policy is incorporated by reference into our Terms. Any
-          capitalized terms not defined in this Policy are defined in the Terms.
-          You agree to comply with all Terms when accessing or using our
-          Services, including this Privacy Policy.
+          經郵寄公司寄出: 將於完成訂單後約3個工作天經平郵/順豐速遞寄出；如訂單因收貨地址不完善、多次派送均無人收件，收件人拒收包裹等原因而被退回，訂單將會自動取消；如客人要求重新安排寄出商品，必須於5個工作天內主動聯絡客服重新支付郵費。Premiere.hk保留處理或回收有關商品的權利並不會作另行通知及賠償。
         </p>
       </div>
 
       <div className={styles.section}>
-        <h3>2. Lorem Ipsum</h3>
+        <h3>2. 預訂貨品</h3>
         <p>
-          Our Services, including but not limited to the registration of an
-          account with us or placing of an order, is not intended to be used by
-          children under the age of 13. When a visitor indicates an age under
-          13, the registration process for The Upside website cannot be
-          completed, and no personally identifying information is collected in
-          conjunction with that attempted submission except that we retain
-          e-mail addresses of such persons (and record of access attempts) for
-          purposes of denying registration. Otherwise, we do not knowingly
-          collect personally identifiable information from visitors under the
-          age of 13.
-        </p>
-        <p>
-          If you are under 18, any use of our Services must be with the
-          involvement of a parent or guardian. By accessing or using our
-          Website, you warrant and represent to us that you are over the age of
-          18 years and you have the right, authority and legal capacity to enter
-          into a legally binding agreement and to abide by this Privacy Policy.{' '}
-        </p>
-        <p>
-          The Upside collects, uses and discloses information regarding users
-          aged 13-18 in the same manner as it does for adults.{' '}
+          如客人所選購的商品未有現貨，備貨期約2-3星期，到貨後會盡快安排寄出。
         </p>
       </div>
 
       <div className={styles.section}>
-        <h3>3. Lorem Ipsum</h3>
+        <h3>3. 退換政策</h3>
         <p>
-          You must only use our Services in accordance with this Privacy Policy
-          and any applicable law or regulations. You agree to refrain from
-          undertaking any prohibited acts as set out in this Clause 3. You must
-          not (or attempt to):{' '}
+          退換的商品必須與客人收到時相同，另須保留收到貨時的完整包裝(包括吊牌)，且無穿著痕跡，保持商品原樣，不得弄髒、清洗、改變或有磨損，每個訂單只可退換一次。
         </p>
+      </div>
+
+      <div className={styles.section}>
+        <h3>4. 退回商品</h3>
         <p>
-          (a) interfere with or disrupt the use of Services or the website, in
-          any manner including but not limited to the servicers or networks that
-          host the website;{' '}
-        </p>
-        <p>(b) stalk, harass, threaten, intimidate or harm another; </p>
-        <p>
-          (c) pretend to be anyone, or any entity, you are not, you will not
-          impersonate or misrepresent yourself as another person (including
-          celebrities), entity, a The Upside employee, or a civic or government
-          leader, or otherwise misrepresent your affiliation with a person or
-          entity. The Upside reserves the right to reject or block any user
-          which could be deemed to be an impersonation or misrepresentation of
-          your identity, or a misappropriation of another person's name or
-          identity;{' '}
-        </p>
-        <p>
-          (d) engage in any copyright infringement or other intellectual
-          property infringement, or disclose any trade secret or confidential
-          information in violation of a confidentiality, employment, or
-          non-disclosure agreement or otherwise;{' '}
-        </p>
-        <p>
-          (e) use, distribute, reproduce or commercialize any content from the
-          Website or The Upside service except as permitted by this Policy, by
-          law, and with prior written agreement from The Upside;{' '}
-        </p>
-        <p>
-          (f) transmit any unsolicited advertising, promotional material or
-          other forms of solicitation in connection with your use of the Service
-          without the prior written agreement of The Upside;{' '}
-        </p>
-        <p>
-          (g) forge any TCP-IP packet header or any part of the header
-          information or otherwise putting Information in a header designed to
-          mislead recipients as to the origin of any content transmitted through
-          the Website ("spoofing";);
+        如客人所選購的商品因品質問題需要退換，必須保留收據並於14天內聯絡客服。運送過程中有機會令包裝損壞，如包裝盒被壓至變形，於不影響商品使用的情況下將不會作出退換。購買後超過7天的商品將由Premiere.hk全權決定是否辦理退換貨。
         </p>
       </div>
     </div>

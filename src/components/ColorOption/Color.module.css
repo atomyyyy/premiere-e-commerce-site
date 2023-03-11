@@ -1,8 +1,9 @@
 .root {
-    background-color: white;
+    background-color: var(--standard-light-purple);
     height: 30px;
     border-radius: 50%;
-    border: 1px solid var(--bg-light-gray);
+    -webkit-border-radius: 50%;
+    border: 1px solid var(--standard-light-purple);
     transition: all ease-in-out 0.3s;
 
     display: flex;
@@ -16,8 +17,10 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
+    -webkit-border-radius: 50%;
 }
 
 .root:hover, .isActive {
-    border: 1px solid var(--standard-black);
+    border-radius: 50%;
+    border: 1px solid var(--standard-dark-purple);
 }

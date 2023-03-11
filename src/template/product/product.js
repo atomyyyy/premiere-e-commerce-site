@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import * as styles from './product.module.css';
+import React from 'react';
+import { navigate } from 'gatsby';
+import { useForm } from 'react-hook-form';
 
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 import Accordion from '../../components/Accordion';
 import AdjustItem from '../../components/AdjustItem';
 import Button from '../../components/Button';
@@ -9,16 +11,18 @@ import Container from '../../components/Container';
 import CurrencyFormatter from '../../components/CurrencyFormatter';
 import Gallery from '../../components/Gallery';
 import SizeList from '../../components/SizeList';
-import ColorList from '../../components/SwatchList';
+import ColorList from '../../components/ColorList';
 import Layout from '../../components/Layout/Layout';
-import { uniqueId } from '../../helpers/general';
-import Seo from '../../components/Seo'
+import { uniqueId } from '../../helpers/general';import Seo from '../../components/Seo'
 
-import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
-import { navigate } from 'gatsby';
+import * as styles from './product.module.css';
 
-const ProductPage = ({ pageContext }) => {
-  const { data = {}, updateState } = useShoppingCartContext();
+const ProductPage = ({ pageContext, location }) => {
+  const { state = {} } = location || {};
+  const { cartItemId = null } = state;
+
+  const { data: { cart = [] } = {}, upsertCartItemById } = useShoppingCartContext();
+  const existingCartItem = cartItemId && cart.find(item => item.cartItemId === cartItemId);
 
   const {
     productCode,
@@ -32,9 +36,28 @@ const ProductPage = ({ pageContext }) => {
     category
   } = pageContext;
 
-  const [quantity, setquantity] = useState(0);
-  const [activeColor, setActiveColor] = useState(colorOptions?.length ? colorOptions[0] : null);
-  const [activeSize, setActiveSize] = useState(sizeOptions?.length ? sizeOptions[0] : null);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch
+  } = useForm({
+    defaultValues: {
+      cartItemId: cartItemId || uniqueId(),
+      name,
+      productCode,
+      price,
+      image,
+      size: cartItemId ? existingCartItem.size : null,
+      color: cartItemId ? existingCartItem.color : colorOptions ? colorOptions[0].title : null,
+      quantity: cartItemId ? existingCartItem.quantity : 1
+    }
+  });
+
+  const onSubmit = (cartItem) => {
+    upsertCartItemById(cartItem);
+    navigate('/cart');
+  }
 
   return (
     <Seo title={`Premiere | ${name}`}>
@@ -57,61 +80,51 @@ const ProductPage = ({ pageContext }) => {
                   <CurrencyFormatter appendZero amount={price} />
                 </div>
 
-                {colorOptions?.length && (
-                  <div>
-                    <ColorList
-                      swatchList={colorOptions}
-                      activeSwatch={activeColor}
-                      setActiveSwatch={setActiveColor}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className={styles.quantityContainer}>
+                    <span>數量</span>
+                    <AdjustItem
+                      {...register('quantity')}
+                      ref={null}
+                      value={watch('quantity')}
+                      setValue={(val) => setValue('quantity', val)}
                     />
                   </div>
-                )}
-                
-                {sizeOptions?.length && (
-                  <div className={styles.sizeContainer}>
-                    <SizeList
-                      sizeList={sizeOptions}
-                      activeSize={activeSize}
-                      setActiveSize={setActiveSize}
-                    />
+
+                  {colorOptions?.length && (
+                    <div className={styles.sizeContainer}>
+                      <ColorList
+                        {...register('color')}
+                        ref={null}
+                        options={colorOptions}
+                        value={watch('color')}
+                        setActiveColor={(val) => setValue('color', val)}
+                      />
+                    </div>
+                  )}
+
+                  {sizeOptions?.length && (
+                    <div className={styles.sizeContainer}>
+                      <SizeList
+                        {...register('size')}
+                        ref={null}
+                        setActive={(val) => setValue('size', val)}
+                        options={sizeOptions}
+                        value={watch('size')}
+                      />
+                    </div>
+                  )}
+
+                  <div className={styles.actionContainer}>
+                    <div className={styles.addToButtonContainer}>
+                      <Button fullWidth level={'primary'} type='submit'>
+                        加入購物車
+                      </Button>
+                    </div>
                   </div>
-                )}
+                </form>
 
-                <div className={styles.quantityContainer}>
-                  <span>Quantity</span>
-                  <AdjustItem originalQuantity={quantity} onQuantityUpdate={setquantity} />
-                </div>
-
-                <div className={styles.actionContainer}>
-                  <div className={styles.addToButtonContainer}>
-                    <Button
-                      onClick={() => {
-                        updateState({
-                          ...data,
-                          cart: [...data.cart, {
-                            cartItemId: uniqueId(),
-                            productCode,
-                            name,
-                            price,
-                            color: activeColor?.title,
-                            size: activeSize,
-                            description,
-                            image,
-                            category,
-                            quantity
-                          }]
-                        });
-                        navigate('/cart');
-                      }}
-                      fullWidth
-                      level={'primary'}
-                    >
-                      Add to Cart
-                    </Button>
-                  </div>
-                </div>
-
-                <div className={styles.description}>
+                <div className={styles.description}> 
                   <p>{description}</p>
                   <span>Product code: {productCode}</span>
                 </div>

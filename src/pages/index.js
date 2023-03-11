@@ -29,7 +29,7 @@ function useHashFragment(offset = 0, trigger = true) {
     scrollToHashElement();
     window.addEventListener("hashchange", scrollToHashElement);
     return window.removeEventListener("hashchange", scrollToHashElement);
-  }, [trigger]);
+  }, [trigger, offset]);
 }
 
 const IndexPage = (prop) => {
@@ -83,7 +83,7 @@ const IndexPage = (prop) => {
                 spacing={true}
                 showSlider
                 height={350}
-                columns={4}
+                columns={3}
                 data={products.filter(({ category }) => category === 'clothings')}
               />
             </Container>
@@ -99,7 +99,7 @@ const IndexPage = (prop) => {
                 spacing={true}
                 showSlider
                 height={350}
-                columns={4}
+                columns={3}
                 data={products.filter(({ category }) => category === 'accessories')}
               />
             </Container>

@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, navigate } from 'gatsby';
 
+import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 import Brand from '../Brand';
 import Container from '../Container';
 import Config from '../../config.json';
 import ExpandedMenu from '../ExpandedMenu';
 import Icon from '../Icons/Icon';
 import * as styles from './Header.module.css';
-
 import { isBrowser } from '../../helpers/general';
-import { useShoppingCartContext } from '../../context/ShoppingCartContextProvider';
 
-const Header = (prop) => {
-  const [mobileMenu, setMobileMenu] = useState(false);
+const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
 
   const [menu, setMenu] = useState();
@@ -87,7 +85,6 @@ const Header = (prop) => {
               aria-label="Cart"
               className={`${styles.iconButton} ${styles.iconContainer} ${styles.bagIconContainer}`}
               onClick={() => {
-                setMobileMenu(false);
                 navigate('/cart');
               }}
             >

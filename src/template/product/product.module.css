@@ -16,6 +16,7 @@
 }
 
 .details {
+    min-width: min(100%, 450px);
     max-width: 450px;
 }
 

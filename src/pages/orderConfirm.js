@@ -1,6 +1,7 @@
 import React from 'react';
 import * as styles from './orderConfirm.module.css';
 
+import Seo from '../components/Seo';
 import ActionCard from '../components/ActionCard';
 import Container from '../components/Container';
 import Layout from '../components/Layout/Layout';
@@ -20,6 +21,7 @@ const OrderConfirmPage = ({ location }) => {
   };
   return (
     <Layout disablePaddingBottom>
+      <Seo title={`Premiere | 我的訂單`} />
       <Container size={'medium'}>
         <div className={styles.root}>
           <h1>Thank You!</h1>

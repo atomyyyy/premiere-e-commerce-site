@@ -72,7 +72,6 @@ const Button = ({
           onClick={onClick}
           type={type}
           disabled={disabled}
-          form={form}
         >
           {children}
         </button>

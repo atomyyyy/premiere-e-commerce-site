@@ -1,4 +1,4 @@
-# Swatch Component
+# Color Component
 
 
 ## Options
@@ -6,10 +6,10 @@ No options available for this component
 
 ## Install
 ```
-import Swatch from 'components/Swatch'
+import Color from 'components/Color'
 ```
 
 ## Examples
 ```
-<Swatch />
+<Color />
 ```

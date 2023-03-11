@@ -4,21 +4,21 @@ import BoxOption from '../BoxOption';
 import * as styles from './SizeList.module.css';
 
 const SizeList = (props) => {
-  const { sizeList, setActiveSize, activeSize } = props;
+  const { options, setActive, value } = props;
   return (
     <div className={styles.root}>
       <div className={styles.sizeLabelContainer}>
-        <span className={styles.label}>Size</span>
-        <span className={`${styles.label} ${styles.guide}`}>Size Guide</span>
+        <span className={styles.label}>尺寸</span>
+        <span className={`${styles.label} ${styles.guide}`}>尺寸參考</span>
       </div>
       <div className={styles.sizeSelection}>
-        {sizeList?.map((sizeOption, index) => {
+        {options?.map((sizeOption, index) => {
           return (
             <BoxOption
               key={index}
               data={sizeOption}
-              setActive={setActiveSize}
-              isActive={activeSize === sizeOption}
+              setActive={setActive}
+              isActive={value === sizeOption}
             />
           );
         })}
