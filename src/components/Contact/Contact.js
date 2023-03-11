@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Button from '../Button';
+import { navigate } from 'gatsby';
 
+import Button from '../Button';
 import FormInputField from '../FormInputField/FormInputField';
 
 import * as styles from './Contact.module.css';
@@ -21,14 +22,20 @@ const Contact = (props) => {
   };
 
   const handleSubmit = (e) => {
+    const formData = new FormData();
+    formData.append('form-name', 'contact');
+    formData.append('name', contactForm.name);
+    formData.append('email', contactForm.email);
+    formData.append('phone', contactForm.phone);
+    formData.append('comment', contactForm.comment);
+
     fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-      body: encodeURI(contactForm)
-    }).then(() => alert('Success')).then(() => {
-      setContactForm(initialState);
-    })
-    e.preventDefault();
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString(),
+    }).then(() => {
+      navigate('/');
+    });
   };
 
   return (
@@ -37,7 +44,7 @@ const Contact = (props) => {
         <h4>Send Us A Message</h4>
         <p>
           Our Customer Service team are here for all enquiries Monday to Friday,
-          9am - 5pm AEDT (Australian Eastern Daylight Savings Time).
+          9am - 5pm HKT.
         </p>
         <p>We look forward to hearing from you.</p>
       </div>
@@ -57,7 +64,14 @@ const Contact = (props) => {
       </div>
 
       <div className={styles.contactContainer}>
-        <form onSubmit={(e) => handleSubmit(e)} name="contact" data-netlify='true' data-netlify-honeypot='botfield'>
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          name="contact"
+          data-netlify='true'
+          data-netlify-honeypot='botfield'
+          method='POST'
+          action='/'
+        >
           <div className={styles.contactForm}>
             <FormInputField
               id={'name'}
