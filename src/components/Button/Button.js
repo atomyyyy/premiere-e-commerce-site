@@ -16,8 +16,7 @@ const Button = ({
   flat,
   link,
   fullWidth,
-  theme,
-  form
+  theme
 }) => {
   const classes = level ? [styles.button] : [styles.link];
 

@@ -25,6 +25,7 @@ const Contact = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('form-name', 'contact');
+    formData.append('subject', `Contact from ${contactForm.email}`);
     formData.append('name', contactForm.name);
     formData.append('email', contactForm.email);
     formData.append('phone', contactForm.phone);
@@ -73,6 +74,7 @@ const Contact = (props) => {
           method='POST'
           action='/'
         >
+          <input hidden id={'subject'} />
           <div className={styles.contactForm}>
             <FormInputField
               id={'name'}
