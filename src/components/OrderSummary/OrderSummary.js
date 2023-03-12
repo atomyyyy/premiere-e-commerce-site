@@ -46,7 +46,15 @@ const OrderSummary = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formValues)
+      body: JSON.stringify({
+        person: formValues,
+        cart,
+        cost: {
+          subTotalCost,
+          shippingCost,
+          totalCost
+        }
+      })
     }).then(res => res.json()).then((res) => {
       resetCart();
       const formData = new FormData();
